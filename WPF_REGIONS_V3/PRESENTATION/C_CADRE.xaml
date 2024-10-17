@@ -1,0 +1,119 @@
+﻿<Window x:Class="WPF_REGIONS_V3.C_CADRE"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_REGIONS_V3"
+        mc:Ignorable="d"
+        xmlns:CARTE="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
+        Title="Régions V3" Height="754" Width="1184" Icon="/amongus.png">
+    <Grid Margin="0,0,10,10">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="188"/>
+            <ColumnDefinition Width="203"/>
+            <ColumnDefinition Width="198"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <ListBox x:Name="LSTB_Regions" Grid.Column="0" d:Background="Aquamarine" FontFamily="Verdana"
+            ItemsSource="{Binding Liste_Regions}"
+            SelectedItem="{Binding Region_Selectionne}"
+            d:ItemsSource="{d:SampleData ItemCount=5}"
+            d:Visibility="Visible" SelectionChanged="LSTB_Regions_SelectionChanged" Height="384" VerticalAlignment="Top">
+
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding name}" Margin="1" ></TextBlock>
+                        <TextBlock Text="{Binding code}" Margin="1"></TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+
+
+        <ListBox x:Name="LSTB_Departements" Grid.Column="1" d:Background="Bisque" FontFamily="Verdana" Margin="0,0,0,394"
+                 ItemsSource="{Binding Liste_Departements}"
+                 SelectedItem="{Binding Departement_Selectionne}"
+                 d:ItemsSource="{d:SampleData ItemCount=5}"
+                 d:Visibility="Hidden" SelectionChanged="LSTB_Departements_SelectionChanged">
+
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding name}" Margin="1" ></TextBlock>
+                        <TextBlock Text="{Binding code}" Margin="1"></TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+
+
+        <ListBox x:Name="LSTB_Villes" Grid.Column="2" d:Background="SpringGreen" FontFamily="Verdana"
+                 ItemsSource="{Binding Liste_Villes}"
+                 SelectedItem="{Binding Ville_Selectionne}"
+                 d:ItemsSource="{d:SampleData ItemCount=5}"
+                 d:Visibility="Hidden" SelectionChanged="LSTB_Villes_SelectionChanged" Height="478" VerticalAlignment="Top">
+
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding name}" Margin="1" ></TextBlock>
+                        <TextBlock Text="{Binding zip_code}" Margin="1"></TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <CARTE:Map x:Name="La_Carte"  Grid.Column="3" Center="47., 2.213749"/>
+        <CheckBox x:Name="CKB_Mode_Route" Grid.Column="3" Content="Mode Route" Margin="0,0,0,10" IsChecked="False" Click="CKB_Mode_Route_Click" HorizontalAlignment="Center" Width="89" Height="15" VerticalAlignment="Bottom"/>
+
+        <CheckBox Grid.Column="0" x:Name="CKB_SPM" Content="SPM" HorizontalAlignment="Left" Margin="10,523,0,0" VerticalAlignment="Top" IsChecked="True" IsEnabled="False" Height="16" Width="44"/>
+        <CheckBox Grid.Column="0" x:Name="CKB_Free" Content="Free" HorizontalAlignment="Left" Margin="10,439,0,0" VerticalAlignment="Top"  IsChecked="True" Unchecked="CKB_Free_Unchecked" Checked="CKB_Free_Checked" IsEnabled="False" Height="16" Width="43"/>
+        <CheckBox Grid.Column="0" x:Name="CKB_Orange" Content="Orange" HorizontalAlignment="Left" Margin="10,502,0,0" VerticalAlignment="Top"  IsChecked="True" Unchecked="CKB_Orange_Unchecked" Checked="CKB_Orange_Checked" IsEnabled="False" Height="16" Width="59"/>
+        <CheckBox Grid.Column="0" x:Name="CKB_Bouygues" Content="Bouygues" HorizontalAlignment="Left" Margin="10,481,0,0" VerticalAlignment="Top"  IsChecked="True" Unchecked="CKB_Bouygues_Unchecked" Checked="CKB_Bouygues_Checked" IsEnabled="False" Height="16" Width="72"/>
+        <CheckBox Grid.Column="0" x:Name="CKB_SFR" Content="SFR" HorizontalAlignment="Left" Margin="10,460,0,0" VerticalAlignment="Top"  IsChecked="True" Checked="CKB_SFR_Checked" Unchecked="CKB_SFR_Unchecked" IsEnabled="False" Height="16" Width="39"/>
+        <CheckBox Grid.Column="0" x:Name="CKB_Vodafone" Content="Vodafone" HorizontalAlignment="Left" Margin="10,607,0,0" VerticalAlignment="Top"  IsChecked="True" Unchecked="CKB_Vodafone_Unchecked" Checked="CKB_Vodafone_Checked" IsEnabled="False" Height="16" Width="71"/>
+        <CheckBox Grid.Column="0" x:Name="CKB_Dauphin" Content="Dauphin" HorizontalAlignment="Left" Margin="10,586,0,0" VerticalAlignment="Top"  IsChecked="True" Unchecked="CKB_Dauphin_Unchecked" Checked="CKB_Dauphin_Checked" IsEnabled="False" Height="16" Width="65"/>
+        <CheckBox Grid.Column="0" x:Name="CKB_Outremer" Content="Outremer" HorizontalAlignment="Left" Margin="10,565,0,0" VerticalAlignment="Top"  IsChecked="True" Unchecked="CKB_Outremer_Unchecked" Checked="CKB_Outremer_Checked" IsEnabled="False" Height="16" Width="71"/>
+        <CheckBox Grid.Column="0" x:Name="CKB_Digicel" Content="Digicel" HorizontalAlignment="Left" Margin="10,544,0,0" VerticalAlignment="Top"  IsChecked="True" Unchecked="CKB_Digicel_Unchecked" Checked="CKB_Digicel_Checked" IsEnabled="False" Height="16" Width="56"/>
+        <CheckBox Grid.Column="0" x:Name="CKB_All" Content="All" HorizontalAlignment="Left" Margin="10,409,0,0" VerticalAlignment="Top"  IsChecked="True" Unchecked="CKB_All_Unchecked" Checked="CKB_All_Checked" IsEnabled="False" Height="16" Width="34"/>
+        <CheckBox Grid.Column="0" x:Name="CKB_Nouv_Caledonie" Content="Nouv.Caledonie" HorizontalAlignment="Left" Margin="10,628,0,0" VerticalAlignment="Top"  IsChecked="True" Unchecked="CKB_Nouv_Caledonie_Unchecked" Checked="CKB_Nouv_Caledonie_Checked" IsEnabled="False" Height="16" Width="104"/>
+        <ListBox Grid.Column="1" Margin="0,307,0,0"
+                 ItemsSource="{Binding Ma_Liste_Emetteurs_Ville}"
+                 SelectedItem="{Binding Emetteur_Selectionne}"
+                 d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="ListBox_SelectionChanged">
+
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Adm}" Margin="1" ></TextBlock>
+                        <!--<TextBlock Text="{Binding Type}" Margin="1"></TextBlock>
+                        <TextBlock Text="{Binding Sys}" Margin="1"></TextBlock>
+                        <TextBlock Text="{Binding Etat}" Margin="1"></TextBlock>-->
+                        <TextBlock Text="{Binding Adr}" Margin="1"></TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Label Grid.Column="2" Content="Infos : " HorizontalAlignment="Left" Margin="10,496,0,0" VerticalAlignment="Top"/>
+        <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="25,651,0,0" VerticalAlignment="Top"
+               Text="{Binding Emetteur_Selectionne.Adr}"/>
+        <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="25,620,0,0" VerticalAlignment="Top"
+               Text="{Binding Emetteur_Selectionne.Etat}"/>
+        <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="25,589,0,0" VerticalAlignment="Top"
+               Text="{Binding Emetteur_Selectionne.Sys}"/>
+        <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="25,558,0,0" VerticalAlignment="Top"
+               Text="{Binding Emetteur_Selectionne.Type}"/>
+        <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="25,527,0,0" VerticalAlignment="Top"
+               Text="{Binding Emetteur_Selectionne.Adm}"/>
+
+        <!--<CheckBox x:Name="CKB_Recherche_Intelligente" Grid.Column="2" Content="Recherche Intelligente" IsChecked="True" HorizontalAlignment="Left" Margin="54,0,0,7" VerticalAlignment="Bottom" Checked="CKB_Recherche_Intelligente_Checked" Unchecked="CKB_Recherche_Intelligente_Unchecked" Visibility="Hidden"/>-->
+        <ComboBox Grid.Column="2" HorizontalAlignment="Left" Margin="10,52,0,0" VerticalAlignment="Top" Width="175" Height="32" Visibility="Hidden"/>
+        <Label Grid.Column="1" Content="Ville :" HorizontalAlignment="Left" Margin="148,50,0,0" VerticalAlignment="Top" Width="60" FontSize="20" Grid.ColumnSpan="2" Visibility="Hidden"/>
+        <TextBox Grid.Column="2" HorizontalAlignment="Center" Margin="0,84,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="180" Height="27" Visibility="Hidden"/>
+    </Grid>
+</Window>
